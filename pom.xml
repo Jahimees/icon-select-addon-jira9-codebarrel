@@ -97,16 +97,6 @@
             <version>4.0.0</version>
             <scope>provided</scope>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework</groupId>-->
-        <!--            <artifactId>spring-beans</artifactId>-->
-        <!--            <version>5.1.18.RELEASE</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework</groupId>-->
-        <!--            <artifactId>spring-context</artifactId>-->
-        <!--            <version>5.1.18.RELEASE</version>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>com.atlassian.activeobjects</groupId>
             <artifactId>activeobjects-plugin</artifactId>
