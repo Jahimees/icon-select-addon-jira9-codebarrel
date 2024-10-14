@@ -1,0 +1,19 @@
+#disable_html_escaping()
+#customControlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters $auiparams)
+<select class="select iconselectlist-singleselect" name="$customField.id" id="$customField.id">
+    #set ($defaultIconUrl = "${baseurl}/download/resources/com.codebarrel.jira.iconselectlist:iconselectlist-resources/images/empty.svg")
+    #if (!$fieldLayoutItem || $fieldLayoutItem.required == false)
+        <option value="-1" class="imagebacked" data-icon="$defaultIconUrl">$i18n.getText("common.words.none")</option>
+    #else
+        #if ( !$configs.default )
+            <option value="" class="imagebacked" data-icon="$defaultIconUrl">$i18n.getText("common.words.none")</option>
+        #end
+    #end
+    #foreach ($option in $configs.options)
+        #if(!$option.disabled || $option.disabled == false || ($value && $value == $option.optionId.toString()))
+            #set ($iconurl = "${baseurl}/secure/viewavatar?size=xsmall&avatarId=${iconOptionUtil.getAvatarId($option)}&avatarType=iconselectlist")
+            <option#if ($value && $value == $option.optionId.toString()) selected="selected"#end class="imagebacked" data-icon="${iconurl}" value="$option.optionId">$textutils.htmlEncode($option.value)</option>
+        #end
+    #end
+</select>
+#customControlFooter ($action $customField.id $fieldLayoutItem.fieldDescription $displayParameters $auiparams)

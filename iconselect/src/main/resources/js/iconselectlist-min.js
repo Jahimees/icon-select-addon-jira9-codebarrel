@@ -1,0 +1,1 @@
+(function(b){function a(c){b(".iconselectlist-singleselect",c).each(function(){var d=b(this);if(d.data("aui-ss")){return}new AJS.SingleSelect({element:d})})}JIRA.bind(JIRA.Events.NEW_CONTENT_ADDED,function(f,c,d){if(d!==JIRA.CONTENT_ADDED_REASON.panelRefreshed){a(c)}})})(AJS.$);

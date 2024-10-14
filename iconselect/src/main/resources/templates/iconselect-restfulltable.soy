@@ -1,0 +1,42 @@
+{namespace com.codebarrel.iconselect.config.restfulltable}
+
+/**
+ * The edit view for the icon chooser for Icon Select Options Config
+ *
+ * @param name the field name
+ * @param value the value of the field
+ * @param contextPath the app conext path
+ */
+{template .iconEditView}
+    <span class="icon-select-avatar-edit">
+        <input type='text' name='{$name}' value='{$value}'>
+        <a class="jira-avatar-picker-trigger" href="#">
+            <span class="aui-avatar aui-avatar-xsmall jira-avatar-issuetype">
+                <span class="aui-avatar-inner">
+                    <img src="{$contextPath}/secure/viewavatar?size=xsmall&amp;avatarId={$value}&amp;avatarType=iconselectlist" alt="{getText('icon.option.select.icon.alt')}">
+                </span>
+            </span>
+            <span class="avatar-select-text">{getText('icon.option.select.icon')}</span>
+            <span id="attach-max-size" class="hidden">130000000</span>
+        </a>
+    </span>
+{/template}
+
+/**
+ * The read view for the icon chooser for Icon Select Options Config
+ *
+ * @param value the value of the field
+ * @param contextPath the app conext path
+ */
+{template .iconReadView}
+    <span class="icon-select-avatar-read">
+        <img height="16" width="16" src='{$contextPath}/secure/viewavatar?size=xsmall&amp;avatarId={$value}&amp;avatarType=iconselectlist' />
+    </span>
+{/template}
+
+/**
+ **/
+{template .operations}
+    <a href="#" class="aui-button icon-select-enable">{getText('icon.option.enable')}</a>
+    <a href="#" class="aui-button icon-select-disable">{getText('icon.option.disable')}</a>
+{/template}

@@ -1,0 +1,9 @@
+#* @vtlvariable name="loggedInUser" type="com.atlassian.crowd.embedded.api.User" *#
+#* @vtlvariable name="customField" type="com.atlassian.jira.issue.fields.CustomField" *#
+#* @vtlvariable name="labelUtil" type="com.atlassian.jira.issue.label.LabelUtil" *#
+#if ($value)
+<div class="shorten icon-select-view" id="${customField.id}-field">
+    <img alt="" height="16" src="${baseurl}/secure/viewavatar?size=xsmall&avatarId=${iconOptionUtil.getAvatarId($value)}&avatarType=iconselectlist" title="" width="16">
+    <span>${value.value}</span>
+</div>
+#end

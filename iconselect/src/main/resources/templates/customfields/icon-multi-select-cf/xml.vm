@@ -1,0 +1,8 @@
+#disable_html_escaping()
+#if ($value)
+    #foreach ($singleValue in $value)
+        #set ($avatarId = ${iconOptionUtil.getAvatarId($singleValue)})
+        #set ($url = "${baseurl}/secure/viewavatar?size=xsmall&avatarId=${avatarId}&avatarType=iconselectlist")
+    <customfieldvalue key="$singleValue.optionId" avatarId="${avatarId}" iconUrl="#getNormalizedUrlXmlEscaped($url)" ><![CDATA[$xmlutils.escapeForCdata($!singleValue.toString())]]></customfieldvalue>
+    #end
+#end

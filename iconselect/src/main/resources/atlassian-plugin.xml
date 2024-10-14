@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atlassian-plugin key="com.codebarrel.jira.iconselectlist" name="Icons for JIRA" i18n-name-key="icons.for.jira.plugin"
+				  plugins-version="2">
+	<plugin-info>
+		<description>This is the Code Barrel Icons for JIRA Add-on.</description>
+		<version>2.0.2</version>
+		<vendor name="Code Barrel Pty Ltd" url="http://codebarrel.io"/>
+		<param name="plugin-icon">images/vendor-icon.png</param>
+		<param name="plugin-logo">images/plugin-logo.png</param>
+		<param name="plugin-banner">images/plugin-banner.jpg</param>
+		<param name="vendor-icon">images/vendor-icon.jpg</param>
+		<param name="vendor-logo">images/vendor-logo.jpg</param>
+		<param name="atlassian-data-center-compatible">true</param>
+	</plugin-info>
+	<resource type="i18n" name="i18n" location="iconselectlist"/>
+	<icon-type key="icon-select-icon-type" class="com.codebarrel.iconselect.icontype.IconSelectIconTypeDefinition"
+			   defaultFilename="defaulticon.svg-iconselectlist"/>
+	<web-resource key="iconselectlist-resources" name="iconselectlist Web Resources">
+		<dependency>com.atlassian.auiplugin:ajs</dependency>
+		<resource type="download" name="images/" location="/images"/>
+		<resource type="download" name="iconselectlist.js" location="/js/iconselectlist.js"/>
+		<resource location="/styles/iconselectlist.less" name="iconselectlist.less.css" type="download"/>
+		<transformation extension="less">
+			<transformer key="lessTransformer"/>
+		</transformation>
+		<transformation extension="js">
+			<transformer key="jsI18n"/>
+		</transformation>
+		<context>jira.general</context>
+	</web-resource>
+	<web-resource key="iconselectlist-config-page-templates">
+		<dependency>com.atlassian.auiplugin:aui-experimental-soy-templates</dependency>
+		<dependency>jira.webresources:soy-templates</dependency>
+		<resource type="soy" location="/templates/iconselect-config-page.soy" name="iconselect-config-page"/>
+	</web-resource>
+	<web-resource key="iconselectlist-restfulltable-templates">
+		<dependency>com.atlassian.auiplugin:aui-experimental-soy-templates</dependency>
+		<dependency>jira.webresources:soy-templates</dependency>
+		<resource type="soy" name="iconselect-restfulltable.soy" location="/templates/iconselect-restfulltable.soy"/>
+		<transformation extension="soy">
+			<transformer key="soyTransformer"/>
+		</transformation>
+		<resource type="download" name="iconselect-restfulltable.soy.js"
+				  location="/templates/iconselect-restfulltable.soy"/>
+	</web-resource>
+	<web-resource key="iconselectlist-config-resources" name="iconselectlist Config Web Resources">
+		<dependency>com.atlassian.auiplugin:ajs</dependency>
+		<dependency>com.atlassian.auiplugin:aui-experimental-restfultable</dependency>
+		<resource type="download" name="iconselect-config.js" location="/js/iconselect-config.js"/>
+		<resource location="/styles/iconselect-config.less" name="iconselect-config.less.css" type="download"/>
+		<transformation extension="less">
+			<transformer key="lessTransformer"/>
+		</transformation>
+		<transformation extension="js">
+			<transformer key="jsI18n"/>
+		</transformation>
+		<context>iconselectlist-config</context>
+	</web-resource>
+	<webwork1 key="configure-icon-select-list-cf-options" name="Configure Icon Select List CF Options"
+			  i18n-name-key="configure-icon-select-list-cf-options.name">
+		<description key="configure-icon-select-list-cf-options.description">Configure Icon Select List CF Options
+			Plugin
+		</description>
+		<actions>
+			<action name="com.codebarrel.iconselect.web.ConfigureOptions" alias="ConfigureIconSelectListOptions">
+				<view name="success" type="soy">
+					:iconselectlist-config-page-templates/com.codebarrel.iconselect.config.page.main
+				</view>
+				<view name="permissionviolation" type="soy">
+					:iconselectlist-config-page-templates/com.codebarrel.iconselect.config.page.permissionViolation
+				</view>
+			</action>
+		</actions>
+	</webwork1>
+	<customfield-type name="Icon Select CF" i18n-name-key="icon-select-cf.name" key="icon-select-cf"
+					  class="com.codebarrel.iconselect.customfield.IconSelectCF">
+		<description key="icon-select-cf.description">The Icon Select CF Plugin</description>
+		<resource type="download" name="customfieldpreview.png" location="/images/icon-single-preview.png"/>
+		<resource name="view" type="velocity" location="/templates/customfields/icon-select-cf/view.vm"/>
+		<resource name="edit" type="velocity" location="/templates/customfields/icon-select-cf/edit.vm"/>
+		<resource name="xml" type="velocity" location="/templates/customfields/icon-select-cf/xml.vm"/>
+	</customfield-type>
+	<customfield-type name="Icon Multi Select CF" i18n-name-key="icon-multi-select-cf.name" key="icon-multi-select-cf"
+					  class="com.codebarrel.iconselect.customfield.IconMultiSelectCF">
+		<description key="icon-multi-select-cf.description">The Icon Select CF Plugin</description>
+		<resource type="download" name="customfieldpreview.png" location="/images/icon-multi-preview.png"/>
+		<resource name="view" type="velocity" location="/templates/customfields/icon-multi-select-cf/view.vm"/>
+		<resource name="edit" type="velocity" location="/templates/customfields/icon-multi-select-cf/edit.vm"/>
+		<resource name="xml" type="velocity" location="/templates/customfields/icon-multi-select-cf/xml.vm"/>
+	</customfield-type>
+	<customfield-searcher name="Multi Select Searcher" i18n-name-key="icon-multi-select-searcher.name"
+						  key="icon-multi-select-searcher"
+						  class="com.codebarrel.iconselect.customfield.IconMultiSelectSearcher">
+		<description key="icon-multi-select-searcher.description">The Multi Select Searcher Plugin</description>
+		<valid-customfield-type package="com.codebarrel.jira.iconselectlist" key="icon-multi-select-cf"/>
+		<valid-customfield-type package="com.codebarrel.jira.iconselectlist" key="icon-select-cf"/>
+		<resource name="search" type="velocity"
+				  location="/templates/customfields/icon-multi-select-searcher/search.vm"/>
+		<resource name="label" type="velocity" location="/templates/customfields/icon-multi-select-searcher/label.vm"/>
+		<resource name="view" type="velocity" location="/templates/customfields/icon-multi-select-searcher/view.vm"/>
+	</customfield-searcher>
+	<rest name="Icon Options Resource" i18n-name-key="icon-options-resource.name" key="icon-options-resource"
+		  path="/iconselectoptions" version="1.0">
+		<description key="icon-options-resource.description">The Icon Options Resource Plugin</description>
+	</rest>
+</atlassian-plugin>

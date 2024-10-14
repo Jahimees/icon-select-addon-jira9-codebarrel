@@ -1,0 +1,20 @@
+#disable_html_escaping()
+$!{auiparams.put("controlHeaderClass", "")}
+#customControlHeader ($action $customField.id $customField.name $fieldLayoutItem.required $displayParameters $auiparams)
+#if ($value)
+    #set ($selectedValues = $value)
+#end
+<div class="aui-field-multiselectpicker frother-control-renderer">
+    <select class="select" id="$customField.id" multiple="multiple" name="$customField.id" size="5"
+            data-remove-null-options="true" data-submit-input-val="true" data-input-text="$textutils.htmlEncode($dataInputTextProvider.getInputText($value))">
+        #foreach ($option in $configs.options)
+            #if (!$option.disabled || $option.disabled == false || ($selectedValues && $selectedValues.contains($option.optionId.toString())))
+                <option class="imagebacked" #if ($selectedValues && $selectedValues.contains($option.optionId.toString())) selected="selected"#end data-icon="${baseurl}/secure/viewavatar?size=xsmall&avatarId=${iconOptionUtil.getAvatarId($option)}&avatarType=iconselectlist" value="$option.optionId">
+                    $textutils.htmlEncode(${option.value})
+                </option>
+            #end
+        #end
+    </select>
+</div>
+#customControlFooter ($action $customField.id $fieldLayoutItem.fieldDescription $displayParameters $auiparams)
+$!{auiparams.clear()}

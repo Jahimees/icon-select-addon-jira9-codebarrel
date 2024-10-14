@@ -1,0 +1,70 @@
+{namespace com.codebarrel.iconselect.config.page}
+
+/**
+ * @param customFieldName
+ * @param fieldConfigName
+ * @param returnUrl
+ **/
+{template .main}
+    {call aui.page.document}
+        {param extraClasses}iconselect-config-page{/param}
+        {param windowTitle: getText('icon.options.conifgure.option') /}
+        {param headContent}
+            <meta name="decorator" content="atl.admin" />
+            <meta name="admin.active.section" content="admin_issues_menu/element_options_section/fields_section"/>
+            <meta name="admin.active.tab" content="view_custom_fields"/>
+        {/param}
+        {param content}
+            <h2>{getText('icon.options.conifgure.option.for.field', $customFieldName)}</h2>
+            <p>{getText('icon.options.conifgure.option.description1', $fieldConfigName)}</p>
+            <p>{getText('icon.options.conifgure.option.description2')}</p>
+            <p><a href="{$returnUrl}">{getText('icon.options.configure.options.return')}</a>
+            <table id="cf-config-icon-options"><!-- populated with js (see versions-init.js) --></table>
+            <p>&nbsp;</p>
+            <p>{getText('icon.options.conifgure.icon.attribution')} <a href="http://emojione.com">Emoji One</a></p>
+        {/param}
+    {/call}
+{/template}
+
+/**
+ * @param options
+ * @param contextPath
+ **/
+{template .viewOptions}
+    <ul class="imagebacked">
+
+    {foreach $option in $options}
+        <li>
+            <img class="icon jira-icon-image" src="{$contextPath}/secure/viewavatar?size=xsmall&amp;avatarId={$option.avatarId}&amp;avatarType=iconselectlist" alt="">
+            <span class="issue-type-name">{$option.label}</span>
+        </li>
+    {ifempty}
+        {getText('icon.options.conifgure.option.none')}
+    {/foreach}
+    </ul>
+{/template}
+
+/**
+ **/
+{template .permissionViolation}
+    {call aui.page.document}
+        {param windowTitle: getText('perm.violation.title') /}
+        {param headContent}
+            <meta name="decorator" content="message" />
+        {/param}
+        {param content}
+            {call aui.message.warning}
+                {param titleContent: getText('perm.violation.title') /}
+                {param content}
+                    <p>{getText('perm.violation.desc')}</p>
+                {/param}
+            {/call}
+        {/param}
+    {/call}
+{/template}
+
+/**
+ **/
+{template .test}
+    test
+{/template}

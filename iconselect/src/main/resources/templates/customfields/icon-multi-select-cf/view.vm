@@ -1,0 +1,11 @@
+#* @vtlvariable name="loggedInUser" type="com.atlassian.crowd.embedded.api.User" *#
+#* @vtlvariable name="customField" type="com.atlassian.jira.issue.fields.CustomField" *#
+#* @vtlvariable name="labelUtil" type="com.atlassian.jira.issue.label.LabelUtil" *#
+#if ($value)
+<div class="shorten icon-select-view" id="${customField.id}-field">
+    #foreach ($singleValue in $value)
+        <img alt="" height="16" src="${baseurl}/secure/viewavatar?size=xsmall&avatarId=${iconOptionUtil.getAvatarId($singleValue)}&avatarType=iconselectlist" title="" width="16">
+        <span>${singleValue.value}</span>#if ($velocityCount != $value.size()),#end
+    #end
+</div>
+#end
